@@ -538,7 +538,8 @@ RCT_EXPORT_METHOD(
             resolve(@{ @"url": url });
         }
         else if (error.code == BNCDuplicateResourceError) {
-            reject(@"RNBranch::Error::DuplicateResourceError", error.localizedDescription, error);
+            reject(@"RNBranch::Error::DuplicateResourceError", [NSString stringWithFormat: @"%lu", (long)error.code], error);
+            // reject(@"RNBranch::Error::DuplicateResourceError", error.localizedDescription, error);
         }
         else {
             reject(@"RNBranch::Error", error.localizedDescription, error);

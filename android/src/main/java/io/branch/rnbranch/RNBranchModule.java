@@ -548,10 +548,10 @@ public class RNBranchModule extends ReactContextBaseJavaModule {
         branchUniversalObject.generateShortUrl(mActivity, linkProperties, new BranchLinkCreateListener() {
             @Override
             public void onLinkCreate(String url, BranchError error) {
-                Log.d(REACT_CLASS, "onLinkCreate " + url);
+                Log.d(REACT_CLASS, "onLinkCreate " + url + " error: " + error.getMessage() + error.getErrorCode());
                 if (error != null) {
                     if (error.getErrorCode() == BranchError.ERR_BRANCH_DUPLICATE_URL) {
-                        promise.reject("RNBranch::Error::DuplicateResourceError", error.getMessage());
+                        promise.reject("RNBranch::Error::DuplicateResourceError", error.getErrorCode() + "");
                     }
                     else {
                         promise.reject(GENERIC_ERROR, error.getMessage());
